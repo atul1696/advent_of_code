@@ -14,7 +14,7 @@ func main() {
 }
 
 type nestedIntArray struct {
-	val int
+	val   int
 	array *[]*nestedIntArray
 	isInt bool
 }
@@ -45,9 +45,9 @@ func parseLine(line string) *nestedIntArray {
 				*a.array = append(*a.array, &child)
 			}
 			if chr == "]" {
-				stack = stack[:len(stack)-1]	
+				stack = stack[:len(stack)-1]
 			}
-		} else if chr != ","{
+		} else if chr != "," {
 			if start == -1 {
 				start = i
 			}
@@ -111,7 +111,7 @@ func compare(arr1 *nestedIntArray, arr2 *nestedIntArray) int {
 		} else {
 			a := []*nestedIntArray{arr2}
 			arr2 = &nestedIntArray{isInt: false, array: &a}
-		}	
+		}
 		return compare(arr1, arr2)
 	}
 }
@@ -125,7 +125,7 @@ func part1(scanner *bufio.Scanner) interface{} {
 
 		scanner.Scan()
 		arr2 := parseLine(scanner.Text())
-		
+
 		if compare(arr1, arr2) < 0 {
 			sum += pairId
 		}
@@ -154,7 +154,7 @@ func part2(scanner *bufio.Scanner) interface{} {
 	key := 1
 	for i, arr := range nestedArrays {
 		if arr == div2 || arr == div6 {
-			key *= (i+1)
+			key *= (i + 1)
 		}
 	}
 	return key

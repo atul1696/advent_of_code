@@ -28,7 +28,7 @@ func computeShortestPath(grid *[]string, start *[][]int) int {
 		queue[i] = entry{s[0], s[1], 0}
 		visited[s[0]][s[1]] = true
 	}
-	
+
 	for len(queue) > 0 {
 		size := len(queue)
 		for i := 0; i < size; i++ {
@@ -47,7 +47,7 @@ func computeShortestPath(grid *[]string, start *[][]int) int {
 					if string((*grid)[x][y]) == "E" {
 						val2 = []rune("z")[0]
 					}
-					if val2 - []rune(val)[0] <= 1 && !visited[x][y]{
+					if val2-[]rune(val)[0] <= 1 && !visited[x][y] {
 						visited[x][y] = true
 						queue = append(queue, entry{x, y, e.dist + 1})
 					}
@@ -66,7 +66,7 @@ func part1(scanner *bufio.Scanner) interface{} {
 		row := scanner.Text()
 		grid = append(grid, row)
 		if index := strings.Index(row, "S"); index != -1 {
-			start = append(start, []int{len(grid)-1, index})
+			start = append(start, []int{len(grid) - 1, index})
 		}
 	}
 	return computeShortestPath(&grid, &start)

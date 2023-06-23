@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	
+
 	"github.com/atul1696/advent_of_code/utils"
 )
 

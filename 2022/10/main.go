@@ -20,18 +20,20 @@ func part1(scanner *bufio.Scanner) interface{} {
 	isNoop := false
 	for scanner.Scan() {
 		switch cycles {
-		case 20, 60, 100, 140, 180, 220: {
-			if isNoop {
-				totalStrength += curr * cycles
-			} else {
-				totalStrength += prev * cycles
+		case 20, 60, 100, 140, 180, 220:
+			{
+				if isNoop {
+					totalStrength += curr * cycles
+				} else {
+					totalStrength += prev * cycles
+				}
 			}
-		}
-		case 21, 61, 101, 141, 181, 221: {
-			if !isNoop {
-				totalStrength += prev * (cycles-1)
+		case 21, 61, 101, 141, 181, 221:
+			{
+				if !isNoop {
+					totalStrength += prev * (cycles - 1)
+				}
 			}
-		}
 		}
 		op := scanner.Text()
 		isNoop = op == "noop"
@@ -60,7 +62,7 @@ func part2(scanner *bufio.Scanner) interface{} {
 	x := 1
 	nextUpdate := 0
 	nextVal := x
-	for cycle := 0; cycle < width * height; cycle++ {
+	for cycle := 0; cycle < width*height; cycle++ {
 		if nextUpdate == cycle {
 			x = nextVal
 			scanner.Scan()
@@ -75,7 +77,7 @@ func part2(scanner *bufio.Scanner) interface{} {
 				nextVal = x
 			}
 		}
-		row, col := cycle / 40, cycle % 40
+		row, col := cycle/40, cycle%40
 		diff := x - col
 		if diff >= -1 && diff <= 1 {
 			crt[row][col] = "#"

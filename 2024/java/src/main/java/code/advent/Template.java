@@ -1,7 +1,5 @@
 package code.advent;
 
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Template extends ISolution {

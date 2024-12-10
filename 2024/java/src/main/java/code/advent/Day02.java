@@ -1,6 +1,8 @@
 package code.advent;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Day02 extends ISolution {

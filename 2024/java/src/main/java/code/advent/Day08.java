@@ -16,41 +16,6 @@ public class Day08 extends ISolution {
         return gcd(b, a % b);
     }
 
-    private record GridLoc(int i, int j) {
-    }
-
-    private record Grid(List<String> grid) {
-        public int rows() {
-            return grid.size();
-        }
-
-        public int cols() {
-            return grid.get(0).length();
-        }
-
-        public boolean isInBounds(int i, int j) {
-            return i >= 0 && i < this.rows() &&
-                    j >= 0 && j < this.cols();
-        }
-
-        public Map<Character, List<GridLoc>> getAntennaMap() {
-            Map<Character, List<GridLoc>> antennaMap = new HashMap<>();
-            for (int j = 0; j < cols(); j++) {
-                for (int i = 0; i < rows(); i++) {
-                    char c = grid.get(i).charAt(j);
-                    if (!Character.isLetterOrDigit(c)) {
-                        continue;
-                    }
-                    if (!antennaMap.containsKey(c)) {
-                        antennaMap.put(c, new ArrayList<>());
-                    }
-                    antennaMap.get(c).add(new GridLoc(i, j));
-                }
-            }
-            return antennaMap;
-        }
-    }
-
     @Override
     protected String part1(Stream<String> inputStream) {
         Grid grid = new Grid(inputStream.toList());
@@ -120,5 +85,40 @@ public class Day08 extends ISolution {
         }
 
         return String.valueOf(antinodeLocs.size());
+    }
+
+    private record GridLoc(int i, int j) {
+    }
+
+    private record Grid(List<String> grid) {
+        public int rows() {
+            return grid.size();
+        }
+
+        public int cols() {
+            return grid.get(0).length();
+        }
+
+        public boolean isInBounds(int i, int j) {
+            return i >= 0 && i < this.rows() &&
+                    j >= 0 && j < this.cols();
+        }
+
+        public Map<Character, List<GridLoc>> getAntennaMap() {
+            Map<Character, List<GridLoc>> antennaMap = new HashMap<>();
+            for (int j = 0; j < cols(); j++) {
+                for (int i = 0; i < rows(); i++) {
+                    char c = grid.get(i).charAt(j);
+                    if (!Character.isLetterOrDigit(c)) {
+                        continue;
+                    }
+                    if (!antennaMap.containsKey(c)) {
+                        antennaMap.put(c, new ArrayList<>());
+                    }
+                    antennaMap.get(c).add(new GridLoc(i, j));
+                }
+            }
+            return antennaMap;
+        }
     }
 }

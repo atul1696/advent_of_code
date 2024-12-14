@@ -17,6 +17,30 @@ public class Day06 extends ISolution {
         solution.execute();
     }
 
+    @Override
+    protected String part1(Stream<String> inputStream) {
+        Grid grid = new Grid(inputStream.toList());
+        Set<GridLoc> visited = grid.traverse();
+        return String.valueOf(visited.size());
+    }
+
+    @Override
+    protected String part2(Stream<String> inputStream) {
+        Grid grid = new Grid(new ArrayList<>(inputStream.toList()));
+        Set<GridLoc> visited = grid.traverse();
+
+        int result = 0;
+        for (GridLoc loc : visited) {
+            if (loc.equals(grid.getStartLoc())) {
+                continue;
+            }
+            if (grid.hasCycle(loc)) {
+                result += 1;
+            }
+        }
+        return String.valueOf(result);
+    }
+
     private enum GridDir {
         UP(-1, 0), DOWN(1, 0), LEFT(0, -1), RIGHT(0, 1);
 
@@ -103,8 +127,6 @@ public class Day06 extends ISolution {
             return visited;
         }
 
-        record Visit(GridDir dir, GridLoc loc) {}
-
         public boolean hasCycle(GridLoc loc) {
             String original = grid.get(loc.i);
 
@@ -141,29 +163,8 @@ public class Day06 extends ISolution {
             grid.set(loc.i, original);
             return result;
         }
-    }
 
-    @Override
-    protected String part1(Stream<String> inputStream) {
-        Grid grid = new Grid(inputStream.toList());
-        Set<GridLoc> visited = grid.traverse();
-        return String.valueOf(visited.size());
-    }
-
-    @Override
-    protected String part2(Stream<String> inputStream) {
-        Grid grid = new Grid(new ArrayList<>(inputStream.toList()));
-        Set<GridLoc> visited = grid.traverse();
-
-        int result = 0;
-        for (GridLoc loc: visited) {
-            if (loc.equals(grid.getStartLoc())) {
-                continue;
-            }
-            if (grid.hasCycle(loc)) {
-                result += 1;
-            }
+        record Visit(GridDir dir, GridLoc loc) {
         }
-        return String.valueOf(result);
     }
 }

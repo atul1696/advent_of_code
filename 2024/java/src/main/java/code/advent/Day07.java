@@ -13,6 +13,34 @@ public class Day07 extends ISolution {
         solution.execute();
     }
 
+    @Override
+    protected String part1(Stream<String> inputStream) {
+        long result = 0;
+
+        for (String line : inputStream.toList()) {
+            Calibration calibration = Calibration.parse(line);
+            if (calibration.valid(Operator.ADD, Operator.MULTIPLY)) {
+                result += calibration.result;
+            }
+        }
+
+        return String.valueOf(result);
+    }
+
+    @Override
+    protected String part2(Stream<String> inputStream) {
+        long result = 0;
+
+        for (String line : inputStream.toList()) {
+            Calibration calibration = Calibration.parse(line);
+            if (calibration.valid(Operator.ADD, Operator.MULTIPLY, Operator.CONCAT)) {
+                result += calibration.result;
+            }
+        }
+
+        return String.valueOf(result);
+    }
+
     private enum Operator {
         ADD, MULTIPLY, CONCAT;
 
@@ -72,33 +100,5 @@ public class Day07 extends ISolution {
                 return result;
             }
         }
-    }
-
-    @Override
-    protected String part1(Stream<String> inputStream) {
-        long result = 0;
-
-        for (String line : inputStream.toList()) {
-            Calibration calibration = Calibration.parse(line);
-            if (calibration.valid(Operator.ADD, Operator.MULTIPLY)) {
-                result += calibration.result;
-            }
-        }
-
-        return String.valueOf(result);
-    }
-
-    @Override
-    protected String part2(Stream<String> inputStream) {
-        long result = 0;
-
-        for (String line : inputStream.toList()) {
-            Calibration calibration = Calibration.parse(line);
-            if (calibration.valid(Operator.ADD, Operator.MULTIPLY, Operator.CONCAT)) {
-                result += calibration.result;
-            }
-        }
-
-        return String.valueOf(result);
     }
 }

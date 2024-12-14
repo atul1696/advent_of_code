@@ -11,17 +11,6 @@ public class Day04 extends ISolution {
         solution.execute();
     }
 
-    private static class Puzzle {
-        public List<String> input;
-        public int rows, cols;
-
-        public Puzzle(List<String> input) {
-            this.input = input;
-            this.rows = input.size();
-            this.cols = input.get(0).length();
-        }
-    }
-
     private int wordSearch(Puzzle puzzle, String word, int i, int j, int index, int di, int dj) {
         if (index == word.length() - 1) {
             return 1;
@@ -65,16 +54,27 @@ public class Day04 extends ISolution {
 
         for (int i = 0; i < puzzle.rows - 2; i++) {
             for (int j = 0; j < puzzle.cols - 2; j++) {
-                boolean left = puzzle.input.get(i+1).charAt(j+1) == 'A' && (
-                        (puzzle.input.get(i).charAt(j) == 'M' && puzzle.input.get(i+2).charAt(j+2) == 'S') ||
-                                (puzzle.input.get(i).charAt(j) == 'S' && puzzle.input.get(i+2).charAt(j+2) == 'M'));
-                boolean right = puzzle.input.get(i+1).charAt(j+1) == 'A' && (
-                        (puzzle.input.get(i+2).charAt(j) == 'M' && puzzle.input.get(i).charAt(j+2) == 'S') ||
-                                (puzzle.input.get(i+2).charAt(j) == 'S' && puzzle.input.get(i).charAt(j+2) == 'M'));
+                boolean left = puzzle.input.get(i + 1).charAt(j + 1) == 'A' && (
+                        (puzzle.input.get(i).charAt(j) == 'M' && puzzle.input.get(i + 2).charAt(j + 2) == 'S') ||
+                                (puzzle.input.get(i).charAt(j) == 'S' && puzzle.input.get(i + 2).charAt(j + 2) == 'M'));
+                boolean right = puzzle.input.get(i + 1).charAt(j + 1) == 'A' && (
+                        (puzzle.input.get(i + 2).charAt(j) == 'M' && puzzle.input.get(i).charAt(j + 2) == 'S') ||
+                                (puzzle.input.get(i + 2).charAt(j) == 'S' && puzzle.input.get(i).charAt(j + 2) == 'M'));
                 count += left && right ? 1 : 0;
             }
         }
 
         return String.valueOf(count);
+    }
+
+    private static class Puzzle {
+        public List<String> input;
+        public int rows, cols;
+
+        public Puzzle(List<String> input) {
+            this.input = input;
+            this.rows = input.size();
+            this.cols = input.get(0).length();
+        }
     }
 }

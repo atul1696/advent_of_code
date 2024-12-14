@@ -24,9 +24,9 @@ public class Day09 extends ISolution {
         for (int i = 0; i < length; i++) {
             int num = input.charAt(i) - '0';
             if ((i & 1) == 0) {
-                fileBlocks[i/2] = num;
+                fileBlocks[i / 2] = num;
             } else {
-                freeBlocks[i/2] = num;
+                freeBlocks[i / 2] = num;
             }
         }
 
@@ -63,7 +63,7 @@ public class Day09 extends ISolution {
         for (int i = 0; i < length; i++) {
             int num = input.charAt(i) - '0';
             if ((i & 1) == 0) {
-                indexLList.add(i/2);
+                indexLList.add(i / 2);
                 fileBlockLList.add(num);
             } else {
                 freeBlockLList.add(num);
@@ -82,12 +82,12 @@ public class Day09 extends ISolution {
                     freeBlockLList.set(j, freeBlockLList.get(j) - fileBlockLList.get(i));
 
                     freeBlockLList.add(j, 0);
-                    freeBlockLList.remove(i+1);
+                    freeBlockLList.remove(i + 1);
 
-                    fileBlockLList.add(j+1, fileBlockLList.get(i));
-                    fileBlockLList.remove(i+1);
-                    indexLList.add(j+1, indexLList.get(i));
-                    indexLList.remove(i+1);
+                    fileBlockLList.add(j + 1, fileBlockLList.get(i));
+                    fileBlockLList.remove(i + 1);
+                    indexLList.add(j + 1, indexLList.get(i));
+                    indexLList.remove(i + 1);
                     i++;
                     break;
                 }

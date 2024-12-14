@@ -28,7 +28,8 @@ public class Day13 extends ISolution {
             List<Long> constants = NUMBERS.matcher(input.get(i + 2)).results()
                     .map(match -> Long.valueOf(match.group())).toList();
 
-            Equation eq1 = new Equation(l1.get(0), l2.get(0), constants.get(0));
+            Equation
+                    eq1 = new Equation(l1.get(0), l2.get(0), constants.get(0));
             Equation eq2 = new Equation(l1.get(1), l2.get(1), constants.get(1));
 
             LinearEquation2d equation2d = LinearEquation2d.parse(eq1, eq2);

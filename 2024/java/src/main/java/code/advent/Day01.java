@@ -46,8 +46,8 @@ public class Day01 extends ISolution {
             counts.compute(Long.parseLong(parts[1]), (k, v) -> v == null ? 1 : v + 1);
         });
 
-        for (long num: left) {
-            score += num * counts.getOrDefault(num,0L);
+        for (long num : left) {
+            score += num * counts.getOrDefault(num, 0L);
         }
 
         return String.valueOf(score);

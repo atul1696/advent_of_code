@@ -17,7 +17,7 @@ public class Day02 extends ISolution {
             List<Long> report = Arrays.stream(line.split("\\s")).map(Long::parseLong).toList();
             boolean increasing = report.get(1) - report.get(0) > 0;
             for (int i = 1; i < report.size(); i++) {
-                long diff = report.get(i) - report.get(i-1);
+                long diff = report.get(i) - report.get(i - 1);
                 if (((diff <= 0 || !increasing) && (diff >= 0 || increasing)) || Math.abs(diff) > 3) {
                     return false;
                 }

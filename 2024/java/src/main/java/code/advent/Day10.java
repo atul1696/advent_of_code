@@ -12,13 +12,42 @@ public class Day10 extends ISolution {
         solution.execute();
     }
 
+    @Override
+    protected String part1(Stream<String> inputStream) {
+        Grid trail = Grid.parse(inputStream.toList());
+        int score = 0;
+
+        for (int i = 0; i < trail.rows; i++) {
+            for (int j = 0; j < trail.cols; j++) {
+                if (trail.grid[i][j] == 0) {
+                    score += trail.getScore(i, j);
+                }
+            }
+        }
+
+        return String.valueOf(score);
+    }
+
+    @Override
+    protected String part2(Stream<String> inputStream) {
+        Grid trail = Grid.parse(inputStream.toList());
+        int rating = 0;
+
+        for (int i = 0; i < trail.rows; i++) {
+            for (int j = 0; j < trail.cols; j++) {
+                if (trail.grid[i][j] == 0) {
+                    rating += trail.getRating(i, j);
+                }
+            }
+        }
+
+        return String.valueOf(rating);
+    }
+
     private static final class Grid {
         public final int[][] grid;
         public final int rows;
         public final int cols;
-
-        private record Loc(int i, int j) {
-        }
 
         private Grid(int[][] grid) {
             this.grid = grid;
@@ -84,37 +113,8 @@ public class Day10 extends ISolution {
         public int getRating(int i, int j) {
             return getPaths(i, j, false);
         }
-    }
 
-    @Override
-    protected String part1(Stream<String> inputStream) {
-        Grid trail = Grid.parse(inputStream.toList());
-        int score = 0;
-
-        for (int i = 0; i < trail.rows; i++) {
-            for (int j = 0; j < trail.cols; j++) {
-                if (trail.grid[i][j] == 0) {
-                    score += trail.getScore(i, j);
-                }
-            }
+        private record Loc(int i, int j) {
         }
-
-        return String.valueOf(score);
-    }
-
-    @Override
-    protected String part2(Stream<String> inputStream) {
-        Grid trail = Grid.parse(inputStream.toList());
-        int rating = 0;
-
-        for (int i = 0; i < trail.rows; i++) {
-            for (int j = 0; j < trail.cols; j++) {
-                if (trail.grid[i][j] == 0) {
-                    rating += trail.getRating(i, j);
-                }
-            }
-        }
-
-        return String.valueOf(rating);
     }
 }

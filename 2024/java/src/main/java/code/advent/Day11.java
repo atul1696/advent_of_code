@@ -7,15 +7,13 @@ import java.util.stream.Stream;
 
 public class Day11 extends ISolution {
 
+    private final HashMap<State, Long> stateMap = new HashMap<>();
+
     public static void main(String[] args) {
         ISolution solution = new Day11();
         solution.test();
         solution.execute();
     }
-
-    private record State(long num, int depth) {}
-
-    private final HashMap<State, Long> stateMap = new HashMap<>();
 
     private int getDigitCount(long num) {
         int count = 0;
@@ -36,7 +34,7 @@ public class Day11 extends ISolution {
         }
         if (num == 0) {
             long c = getStones(1, depth - 1);
-            stateMap.put(new State(1, depth-1), c);
+            stateMap.put(new State(1, depth - 1), c);
             return c;
         }
         int digitCount = getDigitCount(num);
@@ -63,7 +61,7 @@ public class Day11 extends ISolution {
         List<Long> nums = Arrays.stream(inputStream.toList().get(0).split(" "))
                 .map(Long::parseLong).toList();
         long count = 0;
-        for (long num: nums) {
+        for (long num : nums) {
             count += this.getStones(num, 25);
         }
         return String.valueOf(count);
@@ -74,9 +72,12 @@ public class Day11 extends ISolution {
         List<Long> nums = Arrays.stream(inputStream.toList().get(0).split(" "))
                 .map(Long::parseLong).toList();
         long count = 0;
-        for (long num: nums) {
+        for (long num : nums) {
             count += this.getStones(num, 75);
         }
         return String.valueOf(count);
+    }
+
+    private record State(long num, int depth) {
     }
 }
